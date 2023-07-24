@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_08rxbbv" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.10.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
-  <bpmn:process id="cities_process" name="Города" isExecutable="true" camunda:versionTag="1.0">
+  <bpmn:process id="cities_process_without_logging" name="Города 2" isExecutable="true" camunda:versionTag="1.0">
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:extensionElements>
         <camunda:formData>
@@ -38,11 +38,11 @@
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_1atc1cf" sourceRef="StartEvent_1" targetRef="Activity_1xlx6dx" />
     <bpmn:exclusiveGateway id="Gateway_0yamnz0">
-      <bpmn:incoming>Flow_02zryqf</bpmn:incoming>
+      <bpmn:incoming>Flow_0gqtuhq</bpmn:incoming>
       <bpmn:outgoing>Flow_1yl0fa3</bpmn:outgoing>
       <bpmn:outgoing>Flow_0zkg7u1</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_0gqtuhq" sourceRef="Activity_1xlx6dx" targetRef="Activity_0bywjj2" />
+    <bpmn:sequenceFlow id="Flow_0gqtuhq" sourceRef="Activity_1xlx6dx" targetRef="Gateway_0yamnz0" />
     <bpmn:sequenceFlow id="Flow_1yl0fa3" name="&#62; миллиона человек" sourceRef="Gateway_0yamnz0" targetRef="Activity_10imo3n">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${response.prop("population").numberValue()  &gt;= 1000000 }</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -87,19 +87,9 @@
       <bpmn:incoming>Flow_0zkg7u1</bpmn:incoming>
       <bpmn:outgoing>Flow_0p70tqy</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Activity_0bywjj2" name="LogInfo&#10;" camunda:class="ru.ibs.camunda.LogService">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:outputParameter name="statusCode" />
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0gqtuhq</bpmn:incoming>
-      <bpmn:outgoing>Flow_02zryqf</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_02zryqf" sourceRef="Activity_0bywjj2" targetRef="Gateway_0yamnz0" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="cities_process">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="cities_process_without_logging">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="179" y="159" width="36" height="36" />
       </bpmndi:BPMNShape>
@@ -124,10 +114,6 @@
         <dc:Bounds x="730" y="250" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0bywjj2_di" bpmnElement="Activity_0bywjj2">
-        <dc:Bounds x="490" y="137" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1atc1cf_di" bpmnElement="Flow_1atc1cf">
         <di:waypoint x="215" y="177" />
         <di:waypoint x="360" y="177" />
@@ -135,8 +121,9 @@
       <bpmndi:BPMNEdge id="Flow_0gqtuhq_di" bpmnElement="Flow_0gqtuhq">
         <di:waypoint x="410" y="217" />
         <di:waypoint x="410" y="249" />
-        <di:waypoint x="530" y="249" />
-        <di:waypoint x="530" y="217" />
+        <di:waypoint x="523" y="249" />
+        <di:waypoint x="523" y="177" />
+        <di:waypoint x="635" y="177" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1yl0fa3_di" bpmnElement="Flow_1yl0fa3">
         <di:waypoint x="660" y="152" />
@@ -165,10 +152,6 @@
         <di:waypoint x="871" y="80" />
         <di:waypoint x="871" y="177" />
         <di:waypoint x="962" y="177" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_02zryqf_di" bpmnElement="Flow_02zryqf">
-        <di:waypoint x="590" y="177" />
-        <di:waypoint x="635" y="177" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
