@@ -1,5 +1,6 @@
 */target/*
 .idea/*
+.idea/
 *.iml
 atlassian-ide-plugin.xml
 *.orig
@@ -18,8 +19,5 @@ rebel.xml
 .classpath
 *.log
 /target/
-/ru/ibs/gasu/gchp/common/soap/generated/
-/src/main/java/ru/ibs/gasu/gchp/common/soap/generated/
-/src/main/java/ru/ibs/gasu/soap/generated/
 ### Custom
 application-local.properties
