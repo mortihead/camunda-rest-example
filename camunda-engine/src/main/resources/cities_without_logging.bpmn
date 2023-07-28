@@ -19,9 +19,13 @@
               </camunda:map>
             </camunda:inputParameter>
             <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="url">http://host.docker.internal:8082/api/v1/city</camunda:inputParameter>
+            <camunda:inputParameter name="url">http://${ServiceAdress}:8082/api/v1/city2</camunda:inputParameter>
             <camunda:inputParameter name="payload">{
-  "index": ${IndexCity} 
+  "isMetro": "${IsMetro}",
+  "foundingYear": "${FoundingYear} ",
+  "index":  "${IndexCity} ",
+  "regionName": "${RegionName}",
+  "userId": "${UserId}"
 }</camunda:inputParameter>
             <camunda:outputParameter name="response">
               <camunda:script scriptFormat="JavaScript">S(response);</camunda:script>
